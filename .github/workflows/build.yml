@@ -44,4 +44,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            quay.io/gamerefinery/client:${{steps.get-branch.outputs.branch}}
+            quay.io/gamerefinery/action-test:${{steps.get-branch.outputs.branch}}
