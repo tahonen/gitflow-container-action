@@ -3,6 +3,8 @@ name: Create a release
 # Controls when the action will run. 
 on:
   push:
+    branches:    
+      - 'releases/**'
     tags:
       - '*'
   

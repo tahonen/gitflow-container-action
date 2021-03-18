@@ -2,11 +2,9 @@ name: Deploy to Dev
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  #release:
-  #  types: [published]
   push:
-    branches: [ dev]
+    tags:
+      - 'dev'
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,6 +19,17 @@ jobs:
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+      - name: Extract commit SHA
+        id: extract_sha
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Extract branch name
+        id: extract_branch
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+      - name: Branch name
+        run: echo running on branch ${{steps.extract_branch.outputs.branch}}
       - name: Login to Quay.io
         uses: docker/login-action@v1 
         with:
@@ -28,7 +37,6 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
           registry: quay.io
-      
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -40,3 +48,5 @@ jobs:
           push: true
           tags: |
             quay.io/gamerefinery/action-test:dev
+            quay.io/gamerefinery/action-test:${{steps.extract_sha.outputs.sha_short}}
+            quay.io/gamerefinery/action-test:${{steps.extract_branch.outputs.branch}}
