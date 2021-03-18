@@ -53,6 +53,6 @@ jobs:
             ENVIRONMENT=prod
           push: true
           tags: |
-            quay.io/gamerefinery/action-test:${{steps.get-release.outputs.release}}
+            quay.io/gamerefinery/action-test:${{steps.extract-release.outputs.release}}
             quay.io/gamerefinery/action-test:${{steps.extract_sha.outputs.sha_short}}
             quay.io/gamerefinery/action-test:release
