@@ -22,7 +22,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Extract release
         id: extract-release
-        run: echo "::set-output name=release::$(echo ${{ github.ref }} | cut -d/ -f3)"
+        run: echo "::set-output name=release::$(echo ${{ github.ref }} | cut -d/ -f4)"
       - name: Extract commit SHA
         id: extract_sha
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
