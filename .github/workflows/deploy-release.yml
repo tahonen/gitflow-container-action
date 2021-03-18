@@ -2,8 +2,9 @@ name: Create a release
 
 # Controls when the action will run. 
 on:
-  release:
-    types: [created]
+  push: 
+    branches:    
+      - 'releases/**'
 
   
   # Allows you to run this workflow manually from the Actions tab
