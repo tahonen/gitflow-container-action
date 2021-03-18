@@ -2,14 +2,8 @@ name: Create a release
 
 # Controls when the action will run. 
 on:
-  push:
-    branches:    
-      - 'releases/**'
-    tags:
-      - '!dev'
-      - '!qa'
-      - '!staging'
-      - '*'
+  release:
+    types: [published]
 
   
   # Allows you to run this workflow manually from the Actions tab
