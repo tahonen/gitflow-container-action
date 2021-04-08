@@ -3,6 +3,8 @@ name: Deploy to Staging
 # Controls when the action will run. 
 on:
   push:
+    branches:
+      - ""
     tags:
       - 'staging'
   
