@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 env:
   QUAY_REGISTRY: quay.io/gamerefinery
-  REPO: internal  
+  REPO: action-test  
 jobs:
   tag-release:
     runs-on: ubuntu-latest
