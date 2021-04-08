@@ -40,4 +40,4 @@ jobs:
           
       - name: Tag release image
         run: |
-          skopeo copy docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{ steps.vars.outputs.sha_short }} docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{steps.get-release.outputs.release}}
+          skopeo copy docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:release docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{steps.get-release.outputs.release}}
