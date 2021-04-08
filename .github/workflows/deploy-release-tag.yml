@@ -11,7 +11,7 @@ env:
   QUAY_REGISTRY: quay.io/gamerefinery
   REPO: internal  
 jobs:
-  package-build-push:
+  tag-release:
     runs-on: ubuntu-latest
     container:
       image: quay.io/gamerefinery/github-actions-container:latest
@@ -34,4 +34,4 @@ jobs:
           
       - name: Tag release image
         run: |
-          skopeo copy docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:release docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{steps.get-release.outputs.release}}
+          skopeo copy docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:release docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{steps.extract-release.outputs.release}}
