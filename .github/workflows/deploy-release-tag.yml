@@ -2,9 +2,13 @@ name: Tag release
 
 # Controls when the action will run. 
 on:
-  release:
-    types: [published]
-    
+  push:
+    branches:    
+      - 'release/**'
+      - 'hotfix/**'
+    tags:
+      - '*'
+      
   workflow_dispatch:
 env:
   QUAY_REGISTRY: quay.io/gamerefinery
