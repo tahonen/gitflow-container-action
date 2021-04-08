@@ -6,9 +6,6 @@ on:
     tags:    
       - 'release/**'
       - 'hotfix/**'
-
-  
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
   QUAY_REGISTRY: quay.io/gamerefinery
@@ -42,7 +39,7 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
           registry: quay.io
-
+          
       - name: Tag release image
         run: |
           skopeo copy docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{ steps.vars.outputs.sha_short }} docker://${{env.QUAY_REGISTRY}}/${{env.REPO}}:${{steps.get-release.outputs.release}}
